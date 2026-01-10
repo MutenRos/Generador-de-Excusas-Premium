@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Excusas Premium</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div id="app">
+      <h1>Generador de Excusas Premium 💎</h1>
+      
+      <div class="input-container">
+        <label for="reasonInput" class="input-label">Necesito una excusa para...:</label>
+        <input type="text" id="reasonInput" placeholder="¿De qué quieres librarte? (ej. ir a trabajar, la boda de mi ex...)" autocomplete="off">
+      </div>
+
+      <div class="card">
+        <button id="salvarmeBtn" type="button">¡SALVARME!</button>
+      </div>
+      <div id="excusaContainer" class="excusa-box">
+        <p class="placeholder">Pulsa el botón para recibir tu salvación.</p>
+      </div>
+      
+      <div id="historyContainer">
+        <h3>Historial de Salvaciones</h3>
+        <ul id="historyList"></ul>
+        <button id="clearHistory">Borrar Historial</button>
+      </div>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
