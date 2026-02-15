@@ -97,6 +97,8 @@ async function generateExcuse() {
   finalExcuse = finalExcuse.charAt(0).toUpperCase() + finalExcuse.slice(1);
   
   container.innerHTML = `<p class="excusa-text">"${finalExcuse}"</p>`;
+  // Mostrar boton de copiar cuando se genera una excusa
+  document.getElementById('copyBtn').style.display = 'inline-block';
   saveExcuse(finalExcuse);
   addHistoryItem(finalExcuse);
   btnSalvarme.disabled = false;
@@ -108,9 +110,33 @@ reasonInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') generateExcuse();
 });
 
+// Confirmacion antes de borrar el historial para evitar perdida accidental
 btnClear.addEventListener('click', () => {
-    localStorage.removeItem('excuseHistory');
-    loadHistory();
+    if (historyList.children.length === 0) return; // No hay nada que borrar
+    if (confirm('¿Seguro que quieres borrar todo el historial de salvaciones?')) {
+        localStorage.removeItem('excuseHistory');
+        loadHistory();
+    }
+});
+
+// Boton de copiar excusa al portapapeles
+const btnCopy = document.getElementById('copyBtn');
+btnCopy.addEventListener('click', () => {
+    const excusaText = container.querySelector('.excusa-text');
+    if (excusaText) {
+        navigator.clipboard.writeText(excusaText.textContent).then(() => {
+            btnCopy.textContent = '✅ ¡Copiada!';
+            setTimeout(() => { btnCopy.textContent = '📋 Copiar excusa'; }, 1500);
+        });
+    }
+});
+
+// Contador de caracteres del input
+const charCounter = document.getElementById('charCounter');
+reasonInput.addEventListener('input', () => {
+    const len = reasonInput.value.length;
+    charCounter.textContent = `${len} / 80`;
+    charCounter.classList.toggle('near-limit', len >= 70);
 });
 
 // Init

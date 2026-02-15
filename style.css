@@ -159,3 +159,46 @@ button:active {
   box-shadow: none;
   border-color: #666;
 }
+
+/* Accesibilidad: Estilos de foco visible para navegacion por teclado */
+*:focus-visible {
+  outline: 3px solid #d4af37;
+  outline-offset: 2px;
+}
+
+/* Accesibilidad: Reducir animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Boton de copiar excusa */
+.copy-btn {
+  background-color: #2a2a2a;
+  color: #d4af37;
+  font-size: 0.9em;
+  margin-top: 0.8rem;
+  border: 1px solid #d4af37;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.copy-btn:hover {
+  background-color: #d4af37;
+  color: #1a1a1a;
+}
+
+/* Contador de caracteres */
+.char-counter {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.char-counter.near-limit {
+  color: #e74c3c;
+  font-weight: 600;
+}
